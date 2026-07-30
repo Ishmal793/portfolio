@@ -58,15 +58,37 @@ class Command(BaseCommand):
                     project.image.save(image_name, File(f), save=True)
                 self.stdout.write(self.style.SUCCESS(f"Project: {project.title}"))
 
-        cert_path = STATIC_IMAGES / "cert-placeholder.svg"
-        if cert_path.exists():
+        certificates_data = [
+            {
+                "title": "Certificate of Appreciation (AI Researcher)",
+                "issuer": "Google Developers",
+                "issue_date": "3-Month Tenure",
+                "image_name": "google_developers_appreciation.png",
+                "order": 1,
+            },
+            {
+                "title": "Professional Certificate",
+                "issuer": "Industry Certification",
+                "issue_date": "2025",
+                "image_name": "cert-placeholder.svg",
+                "order": 2,
+            }
+        ]
+
+        for cert_data in certificates_data:
+            image_name = cert_data.pop("image_name")
+            image_path = STATIC_IMAGES / image_name
+            if not image_path.exists():
+                self.stdout.write(self.style.WARNING(f"Skip missing cert image: {image_path}"))
+                continue
+            
             cert, created = Certificate.objects.get_or_create(
-                title="Professional Certificate",
-                defaults={"issuer": "Industry Certification", "issue_date": "2025"},
+                title=cert_data["title"],
+                defaults=cert_data,
             )
             if created or not cert.image:
-                with open(cert_path, "rb") as f:
-                    cert.image.save("cert-placeholder.svg", File(f), save=True)
-                self.stdout.write(self.style.SUCCESS("Certificate seeded"))
+                with open(image_path, "rb") as f:
+                    cert.image.save(image_name, File(f), save=True)
+                self.stdout.write(self.style.SUCCESS(f"Certificate: {cert.title}"))
 
         self.stdout.write(self.style.SUCCESS("Seed complete. Add more via Django admin."))
