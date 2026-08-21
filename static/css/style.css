@@ -14,16 +14,16 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-alt: #0e0e16;
-  --text-primary: #f1f5f9;
+  --bg-primary: #07070c;
+  --bg-secondary: #0d0d14;
+  --bg-alt: #0a0a10;
+  --text-primary: #f8fafc;
   --text-muted: #94a3b8;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --nav-bg: rgba(10, 10, 15, 0.85);
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --input-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --nav-bg: rgba(7, 7, 12, 0.88);
+  --shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.05);
 }
 
 [data-theme="light"] {
@@ -553,21 +553,53 @@ body {
 }
 
 .timeline-mini {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
 }
 
 .timeline-mini-item {
-  flex: 1;
-  min-width: 240px;
-  padding: 1.25rem 1.5rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.timeline-mini-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.18);
 }
 
 .timeline-mini-item .year {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
   font-weight: 700;
-  color: var(--accent);
-  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.35;
+}
+
+.timeline-mini-item .year i {
+  font-size: 1.45rem !important;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+.timeline-mini-item p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-muted);
 }
 
 /* Skills */
