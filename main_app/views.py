@@ -78,22 +78,22 @@ def home(request):
 
     certificates = [
         StaticCertificate(
-            title="Advance Python Programming & Applications",
-            image_name="cerificate_navttac.jpg",
-            issuer="National Vocational and Technical Training Commission, Government of Pakistan",
-            issue_date="16 Dec 2024",
+            title="AI Research Program — Certificate of Completion",
+            image_name="ht_tech_ai_research.png",
+            issuer="H&T Tech Solutions, Rochester, New York — Supervised by Ms. Amna Saba (IISAT University Gujranwala)",
+            issue_date="2026",
         ),
         StaticCertificate(
-            title="Foundations of Agent-Based AI Systems",
-            image_name="corsera_agent.jpg",
-            issuer="Coursera (online learning platform) in collaboration with LearnQuest (professional IT training provider)",
-            issue_date="16 Dec, 2025",
+            title="Certificate of Appreciation — AI Researcher",
+            image_name="google_developers_appreciation.png",
+            issuer="Google Developers — 3-month AI Research tenure with outstanding performance",
+            issue_date="2025",
         ),
         StaticCertificate(
-            title="Python for Data Science, AI & Development",
-            image_name="corserra_ppython_.jpg",
-            issuer="Coursera (Authorized by IBM) – IBM Skills Network course completion certificate",
-            issue_date="16 Dec, 2025",
+            title="ISPR Internship Program",
+            image_name="ispr_internship.png",
+            issuer="Inter Services Public Relations (ISPR), Pakistan Armed Forces — Lt. Gen. Ahmed Sharif Chaudhry",
+            issue_date="12 Jan 2026 – 20 Feb 2026",
         ),
         StaticCertificate(
             title="Generative AI Application Developer Certificate",
@@ -102,10 +102,22 @@ def home(request):
             issue_date="17 March, 2026",
         ),
         StaticCertificate(
-            title="Certificate of Appreciation — AI Researcher",
-            image_name="google_developers_appreciation.png",
-            issuer="Google Developers — 3-month AI Research tenure with outstanding performance",
-            issue_date="2025",
+            title="Python for Data Science, AI & Development",
+            image_name="corserra_ppython_.jpg",
+            issuer="Coursera (Authorized by IBM) — IBM Skills Network course completion certificate",
+            issue_date="16 Dec, 2025",
+        ),
+        StaticCertificate(
+            title="Foundations of Agent-Based AI Systems",
+            image_name="corsera_agent.jpg",
+            issuer="Coursera (online learning platform) in collaboration with LearnQuest",
+            issue_date="16 Dec, 2025",
+        ),
+        StaticCertificate(
+            title="Advance Python Programming & Applications",
+            image_name="cerificate_navttac.jpg",
+            issuer="National Vocational and Technical Training Commission, Government of Pakistan",
+            issue_date="16 Dec 2024",
         ),
     ]
 
