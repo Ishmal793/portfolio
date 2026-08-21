@@ -583,16 +583,32 @@ body {
 }
 
 .timeline-mini-item .year i {
-  font-size: 1.45rem !important;
+  font-size: 1.15rem !important;
   width: 36px;
   height: 36px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: rgba(139, 92, 246, 0.15);
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+  border-radius: 9px;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-mini-item .icon-globe {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%) !important;
+}
+
+.timeline-mini-item .icon-google {
+  background: linear-gradient(135deg, #ea4335 0%, #4285f4 100%) !important;
+}
+
+.timeline-mini-item .icon-shield {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+.timeline-mini-item .icon-code {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
 }
 
 .timeline-mini-item p {
