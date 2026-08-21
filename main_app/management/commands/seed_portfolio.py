@@ -66,13 +66,6 @@ class Command(BaseCommand):
                 "image_name": "google_developers_appreciation.png",
                 "order": 1,
             },
-            {
-                "title": "Professional Certificate",
-                "issuer": "Industry Certification",
-                "issue_date": "2025",
-                "image_name": "cert-placeholder.svg",
-                "order": 2,
-            }
         ]
 
         for cert_data in certificates_data:
