@@ -162,8 +162,8 @@
                         <div class="project-overlay">
                             {% if project.huggingface_link %}
                             <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener"
-                               class="project-link-btn project-link-hf" aria-label="Hugging Face">
-                                <i class="fab fa-huggingface"></i>
+                               class="project-link-btn project-link-hf" aria-label="Hugging Face" style="display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                🤗
                             </a>
                             {% endif %}
                             {% if project.github_link %}
@@ -172,8 +172,12 @@
                             </a>
                             {% endif %}
                             {% if project.live_link %}
-                            <a href="{{ project.live_link }}" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live demo">
+                            <a href="{{ project.live_link }}" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live demo" style="display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                                {% if "streamlit" in project.live_link %}
+                                🎈
+                                {% else %}
                                 <i class="fas fa-external-link-alt"></i>
+                                {% endif %}
                             </a>
                             {% endif %}
                         </div>
@@ -181,8 +185,8 @@
                     <div class="project-body p-4">
                         <h4>{{ project.title }}</h4>
                         {% if project.huggingface_link %}
-                        <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener" class="project-hf-badge">
-                            <i class="fab fa-huggingface"></i>
+                        <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener" class="project-hf-badge" style="display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🤗</span>
                             <span>View on Hugging Face</span>
                         </a>
                         {% endif %}

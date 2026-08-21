@@ -31,6 +31,7 @@ if RAILWAY_PUBLIC_DOMAIN:
 ALLOWED_HOSTS.append(".railway.app")
 ALLOWED_HOSTS.append(".up.railway.app")
 ALLOWED_HOSTS.append(".hf.space")
+ALLOWED_HOSTS.append(".vercel.app")
 
 CSRF_TRUSTED_ORIGINS = []
 for host in ALLOWED_HOSTS:
@@ -164,7 +165,8 @@ CONTACT_RECIPIENT_EMAIL = os.environ.get(
 )
 
 
-MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Allow Hugging Face to embed the portfolio in an iframe
 X_FRAME_OPTIONS = 'ALLOWALL'
