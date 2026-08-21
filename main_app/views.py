@@ -1,6 +1,9 @@
+import os
+
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
+from django.http import FileResponse, Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -55,6 +58,19 @@ def home(request):
         "skills": skills,
     }
     return render(request, "index.html", context)
+
+
+def download_cv(request):
+    cv_path = os.path.join(settings.MEDIA_ROOT, "Ishmal_Shahid_CV_.pdf")
+    if not os.path.exists(cv_path):
+        raise Http404("CV file not found.")
+    response = FileResponse(
+        open(cv_path, "rb"),
+        content_type="application/pdf",
+        as_attachment=True,
+        filename="Ishmal_Shahid_CV.pdf",
+    )
+    return response
 
 
 def _send_contact_email(contact):
