@@ -100,7 +100,13 @@ def home(request):
             image_name="gen_ai_.jpg",
             issuer="UETIANS Lahore Endowment Foundation (NCEAC, HEC, PAkAngels, iCodeGuru, Aspire Pakistan)",
             issue_date="17 March, 2026",
-        )
+        ),
+        StaticCertificate(
+            title="Certificate of Appreciation — AI Researcher",
+            image_name="google_developers_appreciation.png",
+            issuer="Google Developers — 3-month AI Research tenure with outstanding performance",
+            issue_date="2025",
+        ),
     ]
 
     contact_form = ContactForm()
