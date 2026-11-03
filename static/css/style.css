@@ -992,6 +992,11 @@ a:hover {
 .timeline-type-label {
   font-size: 0.72rem;
   margin-top: 0.2rem;
+  color: var(--color-text-muted);
+}
+
+[data-theme="dark"] .timeline-type-label {
+  color: #94A3B8 !important;
 }
 
 .timeline-detail-col {
@@ -1019,6 +1024,11 @@ a:hover {
 
 .timeline-location {
   font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+[data-theme="dark"] .timeline-location {
+  color: #94A3B8 !important;
 }
 
 .timeline-description {
