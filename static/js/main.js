@@ -1,146 +1,71 @@
 /**
- * Premium Portfolio — Main JavaScript
+ * Ishmal Shahid — Portfolio Interaction Scripts
+ * Unified Architecture: Category Filtering, Modals, Theme Sync, Clipboard, Scroll
  */
 
 (function () {
   "use strict";
 
-  const TYPING_NAME = "Ishmal Shahid";
-  const TYPING_ROLES = [
-    "Python & Backend Developer",
-    "GenAI & LLM Integrator",
-    "Data Analytics & Automation",
-  ];
-
-  /* Page Loader */
-  window.addEventListener("load", () => {
-    const loader = document.getElementById("page-loader");
-    if (loader) {
-      setTimeout(() => loader.classList.add("hidden"), 600);
-    }
-  });
-
-  /* AOS */
+  /* ----------------------------------------------------
+     1. AOS Animations
+     ---------------------------------------------------- */
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 800,
+      duration: 700,
       easing: "ease-out-cubic",
       once: true,
-      offset: 80,
+      offset: 50,
     });
   }
 
-  /* Theme Toggle */
+  /* ----------------------------------------------------
+     2. Theme Management (Light / Dark)
+     ---------------------------------------------------- */
   const html = document.documentElement;
   const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+  const themeToggleMobile = document.getElementById("themeToggleMobile");
+  const themeIcons = document.querySelectorAll(".theme-icon");
+  const savedTheme = localStorage.getItem("portfolio-theme") || "light";
 
   function applyTheme(theme) {
     html.setAttribute("data-theme", theme);
-    if (themeIcon) {
-      themeIcon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
-    }
+    themeIcons.forEach((icon) => {
+      icon.className = theme === "dark" ? "fas fa-sun theme-icon" : "fas fa-moon theme-icon";
+    });
     localStorage.setItem("portfolio-theme", theme);
   }
 
   applyTheme(savedTheme);
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      applyTheme(next);
-    });
+  function toggleThemeAction() {
+    const current = html.getAttribute("data-theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next);
   }
 
-  /* Typing Effect */
-  function typeText(element, texts, typeSpeed = 80, deleteSpeed = 40, pause = 2000) {
-    if (!element) return;
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+  if (themeToggle) themeToggle.addEventListener("click", toggleThemeAction);
+  if (themeToggleMobile) themeToggleMobile.addEventListener("click", toggleThemeAction);
 
-    function tick() {
-      const current = texts[textIndex];
-      if (isDeleting) {
-        element.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        element.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
-      }
-
-      let delay = isDeleting ? deleteSpeed : typeSpeed;
-
-      if (!isDeleting && charIndex === current.length) {
-        delay = pause;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        delay = 400;
-      }
-
-      setTimeout(tick, delay);
-    }
-
-    tick();
-  }
-
-  const typingName = document.getElementById("typingName");
-  const typingRole = document.getElementById("typingRole");
-
-  if (typingName) {
-    typeText(typingName, [TYPING_NAME], 100, 50, 3000);
-  }
-  if (typingRole) {
-    setTimeout(() => typeText(typingRole, TYPING_ROLES, 60, 35, 2500), 1200);
-  }
-
-  /* Custom Cursor */
-  const dot = document.getElementById("cursorDot");
-  const outline = document.getElementById("cursorOutline");
-
-  if (dot && outline && window.matchMedia("(min-width: 769px)").matches) {
-    let mouseX = 0;
-    let mouseY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left = mouseX + "px";
-      dot.style.top = mouseY + "px";
-    });
-
-    function animateOutline() {
-      outlineX += (mouseX - outlineX) * 0.15;
-      outlineY += (mouseY - outlineY) * 0.15;
-      outline.style.left = outlineX + "px";
-      outline.style.top = outlineY + "px";
-      requestAnimationFrame(animateOutline);
-    }
-    animateOutline();
-
-    const hoverTargets = "a, button, .cert-card, .skill-card, .project-card, input, textarea";
-    document.querySelectorAll(hoverTargets).forEach((el) => {
-      el.addEventListener("mouseenter", () => outline.classList.add("hover"));
-      el.addEventListener("mouseleave", () => outline.classList.remove("hover"));
-    });
-  }
-
-  /* Sticky Nav + Active Links */
+  /* ----------------------------------------------------
+     3. Sticky Navigation & Active Scrollspy
+     ---------------------------------------------------- */
   const nav = document.getElementById("mainNav");
-  const navLinks = document.querySelectorAll(".nav-link[href^='#']");
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link[href^='#']");
   const sections = document.querySelectorAll("section[id]");
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
 
   function onScroll() {
+    const scrollY = window.scrollY;
+
     if (nav) {
-      nav.classList.toggle("scrolled", window.scrollY > 50);
+      nav.classList.toggle("scrolled", scrollY > 30);
     }
 
-    const scrollPos = window.scrollY + 120;
+    if (scrollTopBtn) {
+      scrollTopBtn.classList.toggle("visible", scrollY > 350);
+    }
+
+    const scrollPos = scrollY + 120;
     sections.forEach((section) => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
@@ -151,24 +76,18 @@
         });
       }
     });
-
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    if (scrollTopBtn) {
-      scrollTopBtn.classList.toggle("visible", window.scrollY > 400);
-    }
   }
 
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  const scrollTopBtn = document.getElementById("scrollTopBtn");
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  /* Close mobile nav on link click */
+  // Close mobile navbar on link click
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       const collapse = document.getElementById("navMenu");
@@ -179,33 +98,204 @@
     });
   });
 
-  /* Certificate Modal */
+  /* ----------------------------------------------------
+     4. Project Category Filtering
+     ---------------------------------------------------- */
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectItems = document.querySelectorAll(".project-item");
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+      projectItems.forEach((item) => {
+        const itemCat = item.getAttribute("data-category");
+        if (filter === "all" || itemCat === filter) {
+          item.style.display = "";
+          item.style.opacity = "0";
+          setTimeout(() => {
+            item.style.transition = "opacity 0.3s ease";
+            item.style.opacity = "1";
+          }, 20);
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+
+  /* ----------------------------------------------------
+     5. Certificate Category Filtering
+     ---------------------------------------------------- */
+  const certFilterBtns = document.querySelectorAll(".cert-filter-btn");
+  const certItems = document.querySelectorAll(".cert-gallery-item");
+
+  certFilterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      certFilterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+      certItems.forEach((item) => {
+        const itemCat = item.getAttribute("data-category");
+        if (filter === "all" || itemCat === filter) {
+          item.style.display = "";
+          item.style.opacity = "0";
+          setTimeout(() => {
+            item.style.transition = "opacity 0.3s ease";
+            item.style.opacity = "1";
+          }, 20);
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+
+  /* ----------------------------------------------------
+     6. Project Detail Modal Data Binding
+     ---------------------------------------------------- */
+  const projectModal = document.getElementById("projectDetailModal");
+  if (projectModal) {
+    projectModal.addEventListener("show.bs.modal", (event) => {
+      const trigger = event.relatedTarget;
+      if (!trigger) return;
+
+      const title = trigger.getAttribute("data-proj-title") || "Project Details";
+      const desc = trigger.getAttribute("data-proj-desc") || "";
+      const img = trigger.getAttribute("data-proj-img") || "";
+      const tech = trigger.getAttribute("data-proj-tech") || "";
+      const github = trigger.getAttribute("data-proj-github") || "";
+      const hf = trigger.getAttribute("data-proj-hf") || "";
+      const badge = trigger.getAttribute("data-proj-badge") || "Project";
+
+      document.getElementById("projectDetailModalLabel").textContent = title;
+      document.getElementById("modalProjDesc").textContent = desc;
+      document.getElementById("modalProjBadge").textContent = badge;
+
+      const imgEl = document.getElementById("modalProjImg");
+      imgEl.src = img;
+      imgEl.alt = title;
+
+      // Highlights list
+      const rawHighlights = trigger.getAttribute("data-proj-highlights") || "";
+      const highlightsContainer = document.getElementById("modalProjHighlightsContainer");
+      const highlightsList = document.getElementById("modalProjHighlights");
+      if (highlightsContainer && highlightsList) {
+        highlightsList.innerHTML = "";
+        const items = rawHighlights.split("__SEP__").map((h) => h.trim()).filter((h) => h.length > 0);
+        if (items.length > 0) {
+          highlightsContainer.style.display = "";
+          items.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            highlightsList.appendChild(li);
+          });
+        } else {
+          highlightsContainer.style.display = "none";
+        }
+      }
+
+      // Tech badges
+      const techContainer = document.getElementById("modalProjTech");
+      techContainer.innerHTML = "";
+      if (tech) {
+        tech.split(",").forEach((t) => {
+          const item = t.trim();
+          if (item) {
+            const span = document.createElement("span");
+            span.className = "tech-badge font-mono";
+            span.textContent = item;
+            techContainer.appendChild(span);
+          }
+        });
+      }
+
+      // Action links
+      const linksContainer = document.getElementById("modalProjLinks");
+      linksContainer.innerHTML = "";
+      if (hf) {
+        const hfLink = document.createElement("a");
+        hfLink.href = hf;
+        hfLink.target = "_blank";
+        hfLink.rel = "noopener noreferrer";
+        hfLink.className = "btn btn-primary btn-sm";
+        hfLink.innerHTML = "<span>🤗 Launch Demo</span>";
+        linksContainer.appendChild(hfLink);
+      }
+      if (github) {
+        const ghLink = document.createElement("a");
+        ghLink.href = github;
+        ghLink.target = "_blank";
+        ghLink.rel = "noopener noreferrer";
+        ghLink.className = "btn btn-secondary btn-sm";
+        ghLink.innerHTML = '<i class="fab fa-github me-1"></i> Repository';
+        linksContainer.appendChild(ghLink);
+      }
+    });
+  }
+
+  /* ----------------------------------------------------
+     7. Certificate Lightbox Modal Data Binding
+     ---------------------------------------------------- */
   const certModal = document.getElementById("certModal");
   if (certModal) {
     certModal.addEventListener("show.bs.modal", (event) => {
       const trigger = event.relatedTarget;
       if (!trigger) return;
-      const title = trigger.getAttribute("data-cert-title");
-      const img = trigger.getAttribute("data-cert-img");
-      const issuer = trigger.getAttribute("data-cert-issuer");
-      document.getElementById("certModalLabel").textContent = title || "Certificate";
-      document.getElementById("certModalImg").src = img || "";
-      document.getElementById("certModalImg").alt = title || "";
-      document.getElementById("certModalIssuer").textContent = issuer || "";
+
+      const title = trigger.getAttribute("data-cert-title") || "Certificate";
+      const img = trigger.getAttribute("data-cert-img") || "";
+      const issuer = trigger.getAttribute("data-cert-issuer") || "";
+      const date = trigger.getAttribute("data-cert-date") || "";
+      const badge = trigger.getAttribute("data-cert-badge") || "Verified";
+      const note = trigger.getAttribute("data-cert-note") || "";
+
+      document.getElementById("certModalLabel").textContent = title;
+      document.getElementById("certModalBadge").textContent = badge;
+      document.getElementById("certModalIssuer").textContent = issuer;
+      document.getElementById("certModalDate").textContent = date;
+      document.getElementById("certModalNote").textContent = note || "Verified credential issued upon technical assessment.";
+
+      const imgEl = document.getElementById("certModalImg");
+      imgEl.src = img;
+      imgEl.alt = title;
+
+      const directLink = document.getElementById("certModalDirectLink");
+      if (directLink) directLink.href = img;
     });
   }
 
-  /* Auto-dismiss toasts */
+  /* ----------------------------------------------------
+     8. Copy Email to Clipboard
+     ---------------------------------------------------- */
+  const copyEmailBtn = document.getElementById("copyEmailBtn");
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener("click", () => {
+      const email = "ishishahid4@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const originalHtml = copyEmailBtn.innerHTML;
+        copyEmailBtn.innerHTML = '<i class="fas fa-check text-success"></i>';
+        setTimeout(() => {
+          copyEmailBtn.innerHTML = originalHtml;
+        }, 2000);
+      }).catch(() => {
+        prompt("Copy email address:", email);
+      });
+    });
+  }
+
+  /* ----------------------------------------------------
+     9. Auto-Dismiss Messages
+     ---------------------------------------------------- */
   document.querySelectorAll(".toast").forEach((toast) => {
     setTimeout(() => {
-      const bsToast = bootstrap.Toast.getOrCreateInstance(toast);
-      bsToast.hide();
-    }, 5000);
+      if (typeof bootstrap !== "undefined" && bootstrap.Toast) {
+        const bsToast = bootstrap.Toast.getOrCreateInstance(toast);
+        bsToast.hide();
+      }
+    }, 6000);
   });
-
-  /* Scroll to contact after form submit with messages */
-  if (window.location.hash === "" && document.querySelector(".toast.show")) {
-    const contact = document.getElementById("contact");
-    if (contact) contact.scrollIntoView({ behavior: "smooth" });
-  }
 })();

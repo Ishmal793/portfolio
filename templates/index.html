@@ -2,148 +2,260 @@
 {% load static %}
 
 {% block content %}
-<!-- Hero -->
-<section id="hero" class="hero-section">
-    <div class="hero-bg-gradient"></div>
-    <div class="hero-orbs">
-        <span class="orb orb-1"></span>
-        <span class="orb orb-2"></span>
-        <span class="orb orb-3"></span>
-    </div>
-    <div class="container h-100">
-        <div class="row align-items-center min-vh-100 py-5">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                <p class="hero-badge glass-card mb-3">
-                    <i class="fas fa-sparkles me-2"></i> Software Engineer · Python & AI Developer
+<!-- ==========================================================================
+     1. HERO SECTION — PROFESSIONAL EXECUTIVE FIRST IMPRESSION
+     ========================================================================== -->
+<section id="hero" class="hero-section" aria-label="Hero Overview">
+    <div class="container-portfolio">
+        <div class="row align-items-center g-5 py-5 min-vh-hero">
+            <!-- Left Headline & Narrative -->
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="700">
+                <h1 class="hero-name mb-2">Ishmal Shahid</h1>
+                <p class="hero-role-title text-brand mb-4 font-mono">
+                    Python Developer &bull; Data Analyst &bull; AI &amp; Backend Developer
                 </p>
-                <h1 class="hero-title mb-3">
-                    Hi, I'm <span class="text-gradient typing-name" id="typingName"></span>
-                </h1>
-                <p class="hero-subtitle typing-role" id="typingRole"></p>
-                <p class="hero-desc">
-                    Final-year Software Engineering student at IISAT University with hands-on experience 
-                    in AI research, data analytics, and Django full-stack web development. Passionate about 
-                    building smart, practical software solutions that solve real problems.
-                </p>
-                <div class="hero-actions mt-4">
-                    <a href="#projects" class="btn btn-primary-glow me-3 mb-2">
-                        <i class="fas fa-rocket me-2"></i>View Projects
-                    </a>
-                    <a href="{% url 'download_cv' %}" class="btn-cv-download me-3 mb-2" id="cvDownloadBtn">
-                        <i class="fas fa-file-pdf"></i><span>Download CV</span>
-                    </a>
-                    <a href="#contact" class="btn btn-glass mb-2">
-                        <i class="fas fa-envelope me-2"></i>Contact Me
-                    </a>
-                </div>
-                <div class="hero-social mt-4">
-                    <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="mailto:ishishahid4@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="hero-illustration-wrapper">
-                    <div class="hero-glow-ring"></div>
-                    <img src="{% static 'images/ai-hero.svg' %}" alt="AI Developer — holographic workspace illustration" class="hero-ai-img floating" width="520" height="560">
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
-        <span class="mouse"></span>
-        <span class="scroll-text">Scroll</span>
-    </a>
-</section>
 
-<!-- About -->
-<section id="about" class="section-padding">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">About Me</span>
-            <h2 class="section-title">Software Engineering <span class="text-gradient">& AI Specialist</span></h2>
-        </div>
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-5" data-aos="fade-right">
-                <div class="about-image glass-card p-4 text-center">
-                    <div class="about-avatar">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
-                    <h4 class="mt-3 mb-1">Ishmal Shahid</h4>
-                    <p class="text-muted-custom mb-0">Software Engineer · Python & AI Developer</p>
-                    <p class="text-muted-custom mt-1 mb-0" style="font-size:0.85rem; opacity: 0.9;">IISAT University Gujranwala · Final Year SE</p>
+                <p class="hero-intro mb-4">
+                    Software Engineering Graduate from <strong>IISAT University</strong> (<span class="text-brand font-mono font-weight-bold">CGPA 3.7</span>). International AI research alumnus at <em>H&amp;T Tech Solutions (Rochester, NY)</em>, 3-month research tenure with <em>Google Developers</em>, and former intern at <em>ISPR (Pakistan Armed Forces)</em>. Focused on engineering production GenAI systems, interactive analytics dashboards, and scalable Python web backends.
+                </p>
+
+                <!-- Action Button Group -->
+                <div class="hero-action-row d-flex flex-wrap align-items-center gap-3 mb-5">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View Projects</span>
+                        <i class="fas fa-arrow-down ms-2"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane me-2"></i>
+                        <span>Contact Me</span>
+                    </a>
+                    <a href="{% url 'download_cv' %}" class="btn btn-secondary" id="heroCvDownloadBtn">
+                        <i class="fas fa-file-pdf me-2 text-brand"></i>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+
+                <!-- Verified Social Channels -->
+                <div class="hero-social-strip d-flex flex-wrap align-items-center gap-4 pt-3 border-top">
+                    <span class="social-strip-label font-mono">CONNECT:</span>
+                    <a href="https://github.com/Ishmal793" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-github me-1"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/ishmal-shahid/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-linkedin-in me-1"></i> LinkedIn
+                    </a>
+                    <a href="https://huggingface.co/spaces/ishi4/Analysis_your_Next_Step" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <span>🤗</span> HuggingFace
+                    </a>
+                    <a href="mailto:ishishahid4@gmail.com" class="social-link">
+                        <i class="fas fa-envelope me-1"></i> ishishahid4@gmail.com
+                    </a>
                 </div>
             </div>
-            <div class="col-lg-7" data-aos="fade-left">
-                <p class="lead-about">
-                    I am a final-year Software Engineering student at IISAT University Gujranwala. My main focus 
-                    is on building modern web applications, intelligent AI tools, and data analytics solutions using 
-                    Python, Django, SQL, and Machine Learning.
-                </p>
-                <p>
-                    Over time, I've had the opportunity to participate in an international AI research program 
-                    with H&amp;T Tech Solutions (USA), complete a 3-month AI research tenure with Google Developers 
-                    initiatives, and serve as an intern at ISPR (Pakistan Armed Forces).
-                </p>
-                <div class="row g-3 mt-2">
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="about-stat-card glass-card">
-                            <i class="fas fa-code text-gradient"></i>
-                            <h5>Development</h5>
-                            <p>Scalable Django & Python backends</p>
+
+            <!-- Right Executive Showcase Spotlight -->
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                <div class="hero-executive-spotlight">
+                    <!-- Top Window Chrome -->
+                    <div class="spotlight-header d-flex align-items-center justify-content-between px-4 py-3">
+                        <div class="spotlight-title d-flex align-items-center gap-2">
+                            <span class="status-pulse-sm"></span>
+                            <span class="font-mono text-white text-sm">SYSTEM ARCHITECTURE · PROD</span>
                         </div>
+                        <span class="badge-spotlight font-mono">FLAGSHIP GENAI</span>
                     </div>
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="about-stat-card glass-card">
-                            <i class="fas fa-chart-line text-gradient"></i>
-                            <h5>Analytics</h5>
-                            <p>BI dashboards & data storytelling</p>
+
+                    <!-- Spotlight Visual Summary -->
+                    <div class="spotlight-body p-4">
+                        <h4 class="text-white mb-2">AI Career Readiness &amp; ATS System</h4>
+                        <p class="text-muted-spotlight mb-4">
+                            Autonomous GenAI application analyzing resume gap diagnostic metrics with FAISS vector search, generating personalized interview simulations via Groq API and LLaMA 3.
+                        </p>
+
+                        <div class="spotlight-specs mb-4">
+                            <div class="spec-row d-flex justify-content-between py-2 border-bottom border-secondary-subtle">
+                                <span class="font-mono text-muted-spotlight">Inference Engine</span>
+                                <span class="font-mono text-white">LLaMA 3 · Groq API</span>
+                            </div>
+                            <div class="spec-row d-flex justify-content-between py-2 border-bottom border-secondary-subtle">
+                                <span class="font-mono text-muted-spotlight">Vector Search Index</span>
+                                <span class="font-mono text-white">FAISS Embeddings</span>
+                            </div>
+                            <div class="spec-row d-flex justify-content-between py-2 border-bottom border-secondary-subtle">
+                                <span class="font-mono text-muted-spotlight">Document Parsing</span>
+                                <span class="font-mono text-white">PyPDF / PyMuPDF</span>
+                            </div>
+                            <div class="spec-row d-flex justify-content-between py-2">
+                                <span class="font-mono text-muted-spotlight">Cloud Deployment</span>
+                                <a href="https://huggingface.co/spaces/ishi4/Analysis_your_Next_Step" target="_blank" rel="noopener noreferrer" class="font-mono text-cyan">
+                                    Hugging Face Spaces &nearr;
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="about-stat-card glass-card">
-                            <i class="fas fa-brain text-gradient"></i>
-                            <h5>AI / GenAI</h5>
-                            <p>LLM apps & intelligent automation</p>
+
+                        <!-- Quantitative Verification Bar -->
+                        <div class="spotlight-metrics-row d-flex justify-content-between pt-3 border-top border-secondary-subtle text-center">
+                            <div>
+                                <span class="d-block text-white font-weight-bold font-mono" style="font-size: 1.25rem;">3.7</span>
+                                <span class="text-muted-spotlight font-mono" style="font-size: 0.75rem;">CGPA · IISAT</span>
+                            </div>
+                            <div class="metric-separator"></div>
+                            <div>
+                                <span class="d-block text-white font-weight-bold font-mono" style="font-size: 1.25rem;">88.1</span>
+                                <span class="text-muted-spotlight font-mono" style="font-size: 0.75rem;">SKILLS SCORE</span>
+                            </div>
+                            <div class="metric-separator"></div>
+                            <div>
+                                <span class="d-block text-white font-weight-bold font-mono" style="font-size: 1.25rem;">3+</span>
+                                <span class="text-muted-spotlight font-mono" style="font-size: 0.75rem;">AI TENURES</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="timeline-mini mt-5" data-aos="fade-up">
-            <div class="timeline-mini-item glass-card">
-                <span class="year"><i class="fas fa-globe me-2 icon-globe"></i>AI Research Program (Remote, NY)</span>
-                <p>International AI Research Program with H&amp;T Tech Solutions, Rochester, NY — Exploring AI concepts, analytical models, and practical applications.</p>
-            </div>
-            <div class="timeline-mini-item glass-card">
-                <span class="year"><i class="fab fa-google me-2 icon-google"></i>Google Developers — AI Researcher</span>
-                <p>3-month tenure focused on artificial intelligence research and model development under Google Developers initiatives.</p>
-            </div>
-            <div class="timeline-mini-item glass-card">
-                <span class="year"><i class="fas fa-shield-alt me-2 icon-shield"></i>ISPR Internship Program (2026)</span>
-                <p>Completed internship at Inter Services Public Relations (Pakistan Armed Forces) — Jan 12 to Feb 20, 2026.</p>
-            </div>
-            <div class="timeline-mini-item glass-card">
-                <span class="year"><i class="fas fa-laptop-code me-2 icon-code"></i>Tech Stack</span>
-                <p>Python · Django · SQL · Power BI · Streamlit · GenAI · Pandas · Plotly</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Skills -->
-<section id="skills" class="section-padding section-alt">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Expertise</span>
-            <h2 class="section-title">Technical <span class="text-gradient">Skills</span></h2>
+<!-- ==========================================================================
+     2. ABOUT SECTION — CLEAN EDITORIAL PRESENTATION (NO BOX OVERLOAD)
+     ========================================================================== -->
+<section id="about" class="section-container" aria-label="About Ishmal Shahid">
+    <div class="container-portfolio">
+        <div class="section-header mb-5">
+            <span class="section-kicker font-mono">01 / BACKGROUND &amp; PROFILE</span>
+            <h2 class="section-title">Software Engineering &amp; AI Innovations</h2>
+            <p class="section-lead">
+                A disciplined approach to software systems, fusing structured backend engineering with machine intelligence and data storytelling.
+            </p>
         </div>
+
+        <div class="row g-5 align-items-start">
+            <!-- Left Narrative Column -->
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="prose-content">
+                    <p class="lead-paragraph">
+                        I am a Software Engineering graduate from <strong>IISAT University Gujranwala</strong>, graduated with a distinguished cumulative <strong>3.7 CGPA</strong>. My technical focus centers on architecting resilient Python web applications, integrating modern GenAI workflows, and creating high-impact business intelligence dashboards.
+                    </p>
+                    <p>
+                        My foundation is built upon supervised research and professional internships. I was selected for an international AI Research Program with <strong>H&amp;T Tech Solutions (Rochester, New York, USA)</strong> under the mentorship of Ms. Amna Saba (HOD Software Engineering, IISAT University), investigating generative architectures, model evaluation, and analytical frameworks.
+                    </p>
+                    <p>
+                        I also concluded an intensive 3-month AI research tenure recognized by the <strong>Google Developers Initiative</strong> with an official Certificate of Appreciation, and completed a structured internship program at <strong>Inter Services Public Relations (ISPR, Pakistan Armed Forces)</strong> under Serial No. 652, mastering large-scale data workflows and rigorous technical communications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Profile & Credentials Card -->
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="about-summary-panel p-4">
+                    <h5 class="panel-heading font-mono mb-3">PROFESSIONAL DETAILS</h5>
+                    <div class="summary-list d-flex flex-column gap-3 mb-4">
+                        <div class="summary-entry">
+                            <span class="entry-label font-mono">Institution</span>
+                            <span class="entry-value">IISAT University Gujranwala</span>
+                        </div>
+                        <div class="summary-entry">
+                            <span class="entry-label font-mono">Degree</span>
+                            <span class="entry-value">BS Software Engineering (Graduated)</span>
+                        </div>
+                        <div class="summary-entry">
+                            <span class="entry-label font-mono">Academic Standing</span>
+                            <span class="entry-value text-brand font-weight-bold">CGPA 3.7 / 4.0</span>
+                        </div>
+                        <div class="summary-entry">
+                            <span class="entry-label font-mono">National Benchmark</span>
+                            <span class="entry-value">National Skills Test Score: 88.1</span>
+                        </div>
+                        <div class="summary-entry">
+                            <span class="entry-label font-mono">Availability</span>
+                            <span class="entry-value">Open to Worldwide Remote &amp; On-Site Roles</span>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'download_cv' %}" class="btn btn-secondary w-100 justify-content-center">
+                        <i class="fas fa-file-pdf me-2 text-brand"></i>
+                        <span>Download Full Resume (PDF)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distinct Typographic Milestone Strip -->
+        <div class="milestones-horizontal-strip mt-5 pt-4 border-top">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="milestone-block">
+                        <span class="milestone-badge font-mono">RESEARCH</span>
+                        <h6 class="milestone-org mt-1 mb-1">H&amp;T Tech Solutions</h6>
+                        <p class="milestone-sub text-muted mb-0">Rochester, NY &bull; Remote</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="milestone-block">
+                        <span class="milestone-badge font-mono">INITIATIVE</span>
+                        <h6 class="milestone-org mt-1 mb-1">Google Developers</h6>
+                        <p class="milestone-sub text-muted mb-0">3-Month Research Tenure</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="milestone-block">
+                        <span class="milestone-badge font-mono">DEFENSE MEDIA</span>
+                        <h6 class="milestone-org mt-1 mb-1">ISPR Armed Forces</h6>
+                        <p class="milestone-sub text-muted mb-0">Official Internship (652)</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="milestone-block">
+                        <span class="milestone-badge font-mono">BENCHMARK</span>
+                        <h6 class="milestone-org mt-1 mb-1">88.1 Score</h6>
+                        <p class="milestone-sub text-muted mb-0">National Skills Test</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     3. SKILLS SECTION — 5 CLEARLY ORGANIZED CATEGORIES WITH ICONS
+     ========================================================================== -->
+<section id="skills" class="section-container bg-surface-muted" aria-label="Technical Skills Matrix">
+    <div class="container-portfolio">
+        <div class="section-header mb-5">
+            <span class="section-kicker font-mono">02 / CORE COMPETENCIES</span>
+            <h2 class="section-title">Technical Skill Categories</h2>
+            <p class="section-lead">
+                Verified technologies and frameworks applied across production software, AI research initiatives, and executive business dashboards.
+            </p>
+        </div>
+
+        <!-- 5 Category Columns / Rows -->
         <div class="row g-4">
-            {% for skill in skills %}
-            <div class="col-6 col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="{{ forloop.counter0|add:0 }}0">
-                <div class="skill-card glass-card">
-                    <div class="skill-icon"><i class="{{ skill.icon }}"></i></div>
-                    <h5>{{ skill.name }}</h5>
+            {% for category in skill_categories %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}50">
+                <div class="skill-category-card p-4 h-100">
+                    <div class="category-header d-flex align-items-center gap-3 pb-3 mb-3 border-bottom">
+                        <div class="category-icon-circle">
+                            <i class="{{ category.icon }}"></i>
+                        </div>
+                        <div>
+                            <span class="category-number font-mono text-brand">0{{ forloop.counter }}</span>
+                            <h5 class="category-title mb-0">{{ category.name }}</h5>
+                        </div>
+                    </div>
+
+                    <ul class="category-skill-items list-unstyled mb-0 d-flex flex-column gap-3">
+                        {% for skill in category.skills %}
+                        <li class="skill-item-entry">
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <i class="{{ skill.icon }} text-brand skill-fa-icon"></i>
+                                <span class="skill-item-name font-weight-bold">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-item-note font-mono text-muted">{{ skill.note }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
             {% endfor %}
@@ -151,329 +263,523 @@
     </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="section-padding">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Portfolio</span>
-            <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+<!-- ==========================================================================
+     4. PROJECTS SECTION — THE CENTERPIECE SHOWCASE
+     ========================================================================== -->
+<section id="projects" class="section-container" aria-label="Featured Projects">
+    <div class="container-portfolio">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5">
+            <div class="section-header mb-0">
+                <span class="section-kicker font-mono">03 / PRODUCTION WORK</span>
+                <h2 class="section-title mb-0">Featured Projects &amp; Systems</h2>
+            </div>
+
+            <!-- Project Category Filter Pills -->
+            <div class="filter-pill-bar d-flex flex-wrap gap-2" role="tablist">
+                <button class="filter-btn active" data-filter="all" type="button">All Projects</button>
+                <button class="filter-btn" data-filter="ai" type="button">AI &amp; GenAI</button>
+                <button class="filter-btn" data-filter="analytics" type="button">Data Analytics &amp; BI</button>
+                <button class="filter-btn" data-filter="web" type="button">Backend &amp; Web</button>
+            </div>
         </div>
-        <div class="row g-4">
-            {% for project in projects %}
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
-                <article class="project-card glass-card">
-                    <div class="project-img-wrap">
-                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img">
-                        <div class="project-overlay">
-                            {% if project.huggingface_link %}
-                            <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener"
-                               class="project-link-btn project-link-hf" aria-label="Hugging Face" style="display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem;">
-                                🤗
-                            </a>
-                            {% endif %}
-                            {% if project.github_link %}
-                            <a href="{{ project.github_link }}" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            {% endif %}
-                            {% if project.live_link %}
-                            <a href="{{ project.live_link }}" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live demo" style="display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;">
-                                {% if "streamlit" in project.live_link %}
-                                🎈
-                                {% else %}
-                                <i class="fas fa-external-link-alt"></i>
-                                {% endif %}
-                            </a>
-                            {% endif %}
+
+        <!-- Project 1: Flagship Wide Featured Showcase Spread -->
+        {% for project in projects %}
+        {% if forloop.first %}
+        <article class="featured-project-spread mb-5 project-item filter-ai" data-category="ai" data-aos="fade-up">
+            <div class="row g-0 align-items-stretch">
+                <!-- Large Real UI Screenshot with Browser Header -->
+                <div class="col-lg-7">
+                    <div class="browser-frame h-100">
+                        <div class="browser-bar d-flex align-items-center justify-content-between px-3 py-2">
+                            <div class="browser-controls d-flex gap-2">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <span class="browser-address font-mono">huggingface.co/spaces/ishi4/Analysis_your_Next_Step</span>
+                            <span class="browser-live-badge font-mono">LIVE DEMO</span>
+                        </div>
+                        <div class="browser-image-viewport position-relative overflow-hidden">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }} Real Screenshot" class="project-screenshot img-fluid w-100" loading="lazy">
+                            <div class="screenshot-action-overlay d-flex align-items-center justify-content-center">
+                                <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                    <span>Launch on Hugging Face Spaces</span>
+                                    <i class="fas fa-arrow-up-right-from-square ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-body p-4">
-                        <h4>{{ project.title }}</h4>
-                        {% if project.huggingface_link %}
-                        <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener" class="project-hf-badge" style="display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🤗</span>
-                            <span>View on Hugging Face</span>
-                        </a>
-                        {% endif %}
-                        <p>{{ project.description|truncatewords:35 }}</p>
-                        <div class="tech-tags">
-                            {% for tech in project.get_tech_list %}
-                            <span class="tech-tag">{{ tech }}</span>
+                </div>
+
+                <!-- Flagship Narrative & Architecture Specifications -->
+                <div class="col-lg-5 d-flex flex-column justify-content-between p-4 p-xl-5 spread-content-panel">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="badge-flagship-tag font-mono">FLAGSHIP GENAI AGENT</span>
+                            <span class="badge-live-dot font-mono">ACTIVE APP</span>
+                        </div>
+
+                        <h3 class="spread-title mb-3">{{ project.title }}</h3>
+                        <p class="spread-desc text-muted mb-4">{{ project.short_description }}</p>
+
+                        <div class="tech-badge-wrap mb-4">
+                            {% for tech in project.get_primary_tech_list %}
+                            <span class="tech-badge font-mono">{{ tech }}</span>
                             {% endfor %}
                         </div>
                     </div>
-                </article>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p class="text-muted-custom">Projects coming soon. Add them via Django Admin.</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
 
-<!-- Certificates -->
-<section id="certificates" class="section-padding section-alt">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Credentials</span>
-            <h2 class="section-title">Certificates & <span class="text-gradient">Achievements</span></h2>
-        </div>
-        <div class="row g-4 cert-gallery">
-            {% for cert in certificates %}
-            <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
-                <div class="cert-card glass-card" role="button" tabindex="0"
-                     data-bs-toggle="modal" data-bs-target="#certModal"
-                     data-cert-title="{{ cert.title }}"
-                     data-cert-img="{{ cert.image.url }}"
-                     data-cert-issuer="{{ cert.issuer }}">
-                    <img src="{{ cert.image.url }}" alt="{{ cert.title }}" class="cert-thumb">
-                    <div class="cert-info">
-                        <h6>{{ cert.title }}</h6>
-                        {% if cert.issuer %}<small>{{ cert.issuer }}</small>{% endif %}
+                    <div class="spread-actions d-flex flex-wrap align-items-center gap-3 pt-3 border-top">
+                        <a href="{{ project.huggingface_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                            <span>🤗 Launch Live Demo</span>
+                        </a>
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                            <i class="fab fa-github me-1"></i> Repository
+                        </a>
+                        {% endif %}
+                        <button type="button" class="btn btn-ghost btn-sm ms-auto project-modal-trigger" data-bs-toggle="modal" data-bs-target="#projectDetailModal"
+                                data-proj-title="{{ project.title }}"
+                                data-proj-desc="{{ project.description }}"
+                                data-proj-img="{{ project.image.url }}"
+                                data-proj-tech="{{ project.tech_stack }}"
+                                data-proj-github="{{ project.github_link }}"
+                                data-proj-hf="{{ project.huggingface_link }}"
+                                data-proj-badge="{{ project.badge }}"
+                                data-proj-highlights="{% for h in project.highlights %}{{ h }}__SEP__{% endfor %}">
+                            <span>Read Full Details &rarr;</span>
+                        </button>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p class="text-muted-custom">Upload certificates via Django Admin.</p>
+        </article>
+        {% endif %}
+        {% endfor %}
+
+        <!-- Projects 2 through 5: Balanced 2-Column Grid -->
+        <div class="row g-4" id="projectGrid">
+            {% for project in projects %}
+            {% if not forloop.first %}
+            <div class="col-md-6 project-item filter-{{ project.category }}" data-category="{{ project.category }}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <article class="standard-project-card h-100 d-flex flex-column justify-content-between p-4">
+                    <div>
+                        <!-- Consistent 16:10 Screenshot Frame -->
+                        <div class="browser-frame mb-4">
+                            <div class="browser-bar d-flex align-items-center justify-content-between px-3 py-2">
+                                <div class="browser-controls d-flex gap-2">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                                <span class="browser-address font-mono">{{ project.badge }}</span>
+                                <span class="browser-type font-mono">DASHBOARD</span>
+                            </div>
+                            <div class="browser-image-viewport position-relative overflow-hidden">
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-screenshot img-fluid w-100" loading="lazy">
+                                <div class="screenshot-action-overlay d-flex align-items-center justify-content-center">
+                                    {% if project.github_link %}
+                                    <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                                        <i class="fab fa-github me-1"></i> View Repository
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="badge-category font-mono">{{ project.badge }}</span>
+                        </div>
+                        <h4 class="card-project-title mb-2">{{ project.title }}</h4>
+                        <p class="card-project-desc text-muted mb-3">{{ project.short_description }}</p>
+
+                        <div class="tech-badge-wrap mb-3">
+                            {% for tech in project.get_primary_tech_list %}
+                            <span class="tech-badge font-mono">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card-project-footer d-flex align-items-center justify-content-between pt-3 border-top">
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="footer-repo-link font-mono">
+                            <i class="fab fa-github me-1"></i> View Source &nearr;
+                        </a>
+                        {% endif %}
+                        <button type="button" class="btn btn-ghost btn-sm project-modal-trigger" data-bs-toggle="modal" data-bs-target="#projectDetailModal"
+                                data-proj-title="{{ project.title }}"
+                                data-proj-desc="{{ project.description }}"
+                                data-proj-img="{{ project.image.url }}"
+                                data-proj-tech="{{ project.tech_stack }}"
+                                data-proj-github="{{ project.github_link }}"
+                                data-proj-hf="{{ project.huggingface_link }}"
+                                data-proj-badge="{{ project.badge }}"
+                                data-proj-highlights="{% for h in project.highlights %}{{ h }}__SEP__{% endfor %}">
+                            <span>Read Full Details &rarr;</span>
+                        </button>
+                    </div>
+                </article>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- Certificate Modal -->
-<div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalLabel" aria-hidden="true">
+<!-- Project Detail Modal -->
+<div class="modal fade" id="projectDetailModal" tabindex="-1" aria-labelledby="projectDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card border-0">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="certModalLabel">Certificate</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content portfolio-modal">
+            <div class="modal-header border-bottom p-4">
+                <div>
+                    <span class="badge-category font-mono mb-1 d-inline-block" id="modalProjBadge">Project</span>
+                    <h4 class="modal-title mb-0" id="projectDetailModalLabel">Project Title</h4>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-center p-4">
-                <img src="" alt="" id="certModalImg" class="cert-modal-img">
-                <p class="mt-3 mb-0 text-muted-custom" id="certModalIssuer"></p>
+            <div class="modal-body p-4">
+                <div class="modal-image-container mb-4 rounded overflow-hidden border">
+                    <img src="" alt="" id="modalProjImg" class="w-100 object-fit-cover" style="max-height: 380px;">
+                </div>
+                <h6 class="font-mono text-brand mb-2">FULL SYSTEM OVERVIEW &amp; ARCHITECTURE</h6>
+                <p class="text-secondary mb-4" id="modalProjDesc" style="line-height: 1.7;"></p>
+
+                <div id="modalProjHighlightsContainer" class="mb-4">
+                    <h6 class="font-mono text-brand mb-2">KEY CAPABILITIES &amp; HIGHLIGHTS</h6>
+                    <ul class="capabilities-list list-unstyled mb-0" id="modalProjHighlights"></ul>
+                </div>
+
+                <h6 class="font-mono text-brand mb-2">COMPLETE TECHNOLOGY STACK</h6>
+                <div class="tech-badge-wrap mb-4" id="modalProjTech"></div>
+            </div>
+            <div class="modal-footer border-top p-4 d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <div class="d-flex gap-2" id="modalProjLinks">
+                    <!-- Injected via JavaScript -->
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Experience -->
-<section id="experience" class="section-padding">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Career</span>
-            <h2 class="section-title">Work <span class="text-gradient">Experience</span></h2>
+<!-- ==========================================================================
+     5. WORK EXPERIENCE SECTION — CLEAN TIMELINE WITH CONSISTENT FORMATTING
+     ========================================================================== -->
+<section id="experience" class="section-container bg-surface-muted" aria-label="Work Experience and Research">
+    <div class="container-portfolio">
+        <div class="section-header mb-5">
+            <span class="section-kicker font-mono">04 / CAREER HISTORY</span>
+            <h2 class="section-title">Supervised Research &amp; Internships</h2>
+            <p class="section-lead">
+                Rigorous international AI research tenures, Google Developer appointments, and institutional armed forces internships.
+            </p>
         </div>
-        <div class="timeline" data-aos="fade-up">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <span class="timeline-date">2026 — Remote</span>
-                    <h4>AI Research Intern</h4>
-                    <h6 class="company-name"><i class="fas fa-globe me-2"></i>H&amp;T Tech Solutions, Rochester, New York, USA</h6>
-                    <p>
-                        Participated in an international AI Research Program under the supervision of Ms. Amna Saba 
-                        (HOD Software Engineering, IISAT University Gujranwala). Worked on artificial intelligence concepts, 
-                        research methodologies, analytical thinking, and practical AI application development.
+
+        <div class="professional-timeline">
+            {% for exp in experiences %}
+            <article class="timeline-row" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="timeline-date-col">
+                    <span class="timeline-date-badge font-mono">{{ exp.date }}</span>
+                    <span class="timeline-type-label font-mono text-muted">{{ exp.badge }}</span>
+                </div>
+                <div class="timeline-detail-col">
+                    <div class="d-flex flex-wrap align-items-baseline gap-2 mb-2">
+                        <h4 class="timeline-role mb-0">{{ exp.role }}</h4>
+                        <span class="timeline-sep text-muted">&bull;</span>
+                        <h5 class="timeline-company text-brand mb-0">{{ exp.company }}</h5>
+                    </div>
+                    <p class="timeline-location font-mono text-muted mb-3">
+                        <i class="fas fa-location-dot me-1"></i> {{ exp.location }}
                     </p>
-                    <ul class="timeline-tags">
-                        <li>AI Modeling</li>
-                        <li>Research Methodologies</li>
-                        <li>Analytical Frameworks</li>
-                        <li>GenAI</li>
+                    <p class="timeline-description text-secondary mb-3">{{ exp.description }}</p>
+                    <div class="tech-badge-wrap">
+                        {% for tag in exp.tags %}
+                        <span class="tech-badge font-mono">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     6. EDUCATION SECTION — CLEAN & BALANCED ACADEMIC PRESENTATION
+     ========================================================================== -->
+<section id="education" class="section-container" aria-label="Education & Academic Credentials">
+    <div class="container-portfolio">
+        <div class="section-header mb-5">
+            <span class="section-kicker font-mono">05 / ACADEMIC FOUNDATION</span>
+            <h2 class="section-title">Formal Education &amp; Academic Honors</h2>
+            <p class="section-lead">
+                Rigorous computer science and software engineering curriculum with consistent academic distinction.
+            </p>
+        </div>
+
+        <div class="education-card-panel p-4 p-md-5" data-aos="zoom-in">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8 pe-lg-5">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge-flagship-tag font-mono">GRADUATED &bull; COMPLETED</span>
+                        <span class="font-mono text-muted">{{ education.tenure }}</span>
+                    </div>
+                    <h3 class="education-degree-title mb-2">{{ education.degree }}</h3>
+                    <h5 class="education-university text-brand mb-4">
+                        <i class="fas fa-university me-2"></i>{{ education.university }}
+                    </h5>
+
+                    <h6 class="font-mono text-muted mb-2" style="font-size: 0.8rem;">ACADEMIC FOCUS &amp; CURRICULUM HIGHLIGHTS</h6>
+                    <ul class="education-highlights-list list-unstyled mb-0">
+                        {% for h in education.highlights %}
+                        <li>{{ h }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <span class="timeline-date">3-Month Tenure</span>
-                    <h4>AI Researcher</h4>
-                    <h6 class="company-name"><i class="fab fa-google me-2"></i>Google Developers Initiative</h6>
-                    <p>
-                        Completed a 3-month AI research tenure under Google Developers initiatives, working on AI project 
-                        prototypes, exploring machine learning models, and receiving formal recognition for outstanding performance.
-                    </p>
-                    <ul class="timeline-tags">
-                        <li>AI Research</li>
-                        <li>Machine Learning</li>
-                        <li>Python</li>
-                        <li>Data Science</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <span class="timeline-date">12 Jan 2026 – 20 Feb 2026</span>
-                    <h4>Intern — Internship Program</h4>
-                    <h6 class="company-name"><i class="fas fa-shield-alt me-2"></i>Inter Services Public Relations (ISPR), Pakistan Armed Forces</h6>
-                    <p>
-                        Completed an official internship program at ISPR (Media Wing of Pakistan Armed Forces). Gained hands-on 
-                        experience in structured data management, technical reporting, and professional communication workflows.
-                    </p>
-                    <ul class="timeline-tags">
-                        <li>Data Processing</li>
-                        <li>Technical Reporting</li>
-                        <li>Organizational Operations</li>
-                        <li>Communication</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <span class="timeline-date">Internship</span>
-                    <h4>Data Analyst Intern</h4>
-                    <h6 class="company-name"><i class="fas fa-building me-2"></i>Techohub</h6>
-                    <p>
-                        Analyzed business datasets, created interactive Power BI & Streamlit dashboards, cleaned raw data, 
-                        and built KPI reporting pipelines to support business decision-making.
-                    </p>
-                    <ul class="timeline-tags">
-                        <li>SQL</li>
-                        <li>Power BI</li>
-                        <li>Pandas / Python</li>
-                        <li>Streamlit</li>
-                        <li>Excel</li>
-                    </ul>
+
+                <div class="col-lg-4 text-center border-start-lg ps-lg-5">
+                    <div class="gpa-display-box p-4">
+                        <span class="gpa-score text-brand font-mono font-weight-bold">3.7</span>
+                        <span class="gpa-scale font-mono text-muted">/ 4.0 SCALE</span>
+                        <h6 class="mt-2 mb-1">Cumulative GPA</h6>
+                        <p class="text-muted font-mono mb-0" style="font-size: 0.8rem;">High Academic Distinction</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Achievements -->
-<section id="achievements" class="section-padding section-alt">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Milestones</span>
-            <h2 class="section-title">Key <span class="text-gradient">Achievements</span></h2>
+<!-- ==========================================================================
+     7. CERTIFICATES SECTION — READABLE PREVIEWS WITH FUNCTIONAL VERIFICATION
+     ========================================================================== -->
+<section id="certificates" class="section-container bg-surface-muted" aria-label="Certificates & Credentials">
+    <div class="container-portfolio">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5">
+            <div class="section-header mb-0">
+                <span class="section-kicker font-mono">06 / VERIFIED CREDENTIALS</span>
+                <h2 class="section-title mb-0">Professional Certifications &amp; Honors</h2>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-pill-bar d-flex flex-wrap gap-2" role="tablist">
+                <button class="cert-filter-btn active" data-filter="all" type="button">All (7)</button>
+                <button class="cert-filter-btn" data-filter="research" type="button">Research</button>
+                <button class="cert-filter-btn" data-filter="certifications" type="button">Certifications</button>
+                <button class="cert-filter-btn" data-filter="honors" type="button">Honors &amp; Service</button>
+            </div>
         </div>
-        <div class="row justify-content-center g-4">
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                <div class="achievement-card glass-card text-center">
-                    <div class="achievement-icon">
-                        <i class="fas fa-shield-alt"></i>
+
+        <div class="row g-4" id="certGallery">
+            {% for cert in certificates %}
+            <div class="col-md-6 col-lg-4 cert-gallery-item filter-{{ cert.category }}" data-category="{{ cert.category }}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}50">
+                <article class="certificate-card h-100 d-flex flex-column justify-content-between p-3" role="button" tabindex="0"
+                         data-bs-toggle="modal" data-bs-target="#certModal"
+                         data-cert-title="{{ cert.title }}"
+                         data-cert-img="{{ cert.image.url }}"
+                         data-cert-issuer="{{ cert.issuer }}"
+                         data-cert-date="{{ cert.issue_date }}"
+                         data-cert-badge="{{ cert.badge }}"
+                         data-cert-note="{{ cert.credential_note }}">
+                    <div>
+                        <!-- Consistent 4:3 Certificate Preview -->
+                        <div class="cert-preview-frame mb-3 position-relative overflow-hidden">
+                            <img src="{{ cert.image.url }}" alt="{{ cert.title }}" class="cert-preview-img img-fluid w-100" loading="lazy">
+                            <div class="cert-hover-overlay d-flex align-items-center justify-content-center">
+                                <span class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-search-plus me-1"></i> Preview Credential
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="cert-type-tag font-mono text-brand">{{ cert.badge }}</span>
+                            <span class="cert-date-text font-mono text-muted">{{ cert.issue_date }}</span>
+                        </div>
+                        <h5 class="cert-item-title mb-2">{{ cert.title }}</h5>
+                        <p class="cert-item-issuer text-muted font-mono mb-2" style="font-size: 0.8rem;">
+                            {{ cert.issuer }}
+                        </p>
                     </div>
-                    <h4>ISPR Internship</h4>
-                    <p class="mt-3 mb-0">
-                        Successfully completed internship at Inter Services Public Relations —
-                        Pakistan Armed Forces' premier media wing. Ser No. 652.
-                    </p>
-                </div>
+
+                    <div class="cert-card-bottom pt-3 border-top d-flex align-items-center justify-content-between">
+                        <span class="cert-inspect-link font-mono text-brand">
+                            Inspect Credential &nearr;
+                        </span>
+                        <i class="fas fa-shield-halved text-muted"></i>
+                    </div>
+                </article>
             </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="achievement-card glass-card text-center">
-                    <div class="achievement-icon">
-                        <i class="fab fa-google"></i>
-                    </div>
-                    <h4>Google Developers — AI Researcher</h4>
-                    <p class="mt-3 mb-0">
-                        Recognized for outstanding performance in AI research under
-                        Google Developers initiatives over a 3-month tenure.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                <div class="achievement-card glass-card text-center">
-                    <div class="achievement-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h4>International AI Research — New York</h4>
-                    <p class="mt-3 mb-0">
-                        Completed AI Research Program with H&amp;T Tech Solutions,
-                        Rochester, New York — recognized for dedication and active participation.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="achievement-card glass-card text-center">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h4>National Skills Test</h4>
-                    <div class="score-ring">
-                        <span class="score-value">88.1</span>
-                        <span class="score-label">Score</span>
-                    </div>
-                    <p class="mt-3 mb-0">
-                        Demonstrated excellence in national-level skills assessment,
-                        validating strong analytical and technical competencies.
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="section-padding">
-    <div class="container">
-        <div class="section-header text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Get In Touch</span>
-            <h2 class="section-title">Let's Build Something <span class="text-gradient">Amazing</span></h2>
+<!-- Certificate Lightbox Modal -->
+<div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content portfolio-modal">
+            <div class="modal-header border-bottom p-4">
+                <div>
+                    <span class="badge-flagship-tag font-mono mb-1 d-inline-block" id="certModalBadge">Verified Credential</span>
+                    <h4 class="modal-title mb-0" id="certModalLabel">Certificate Title</h4>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <div class="cert-modal-viewport mb-4 p-2 bg-light rounded border">
+                    <img src="" alt="" id="certModalImg" class="img-fluid rounded" style="max-height: 65vh;">
+                </div>
+                <div class="cert-modal-info-box p-4 text-start border rounded bg-surface">
+                    <div class="row g-4">
+                        <div class="col-md-7">
+                            <h6 class="font-mono text-brand mb-1">ISSUING AUTHORITY</h6>
+                            <p class="text-primary mb-3" id="certModalIssuer"></p>
+                            <h6 class="font-mono text-brand mb-1">CREDENTIAL DETAILS &amp; CONTEXT</h6>
+                            <p class="text-secondary mb-0" id="certModalNote"></p>
+                        </div>
+                        <div class="col-md-5 border-start-md ps-md-4">
+                            <h6 class="font-mono text-brand mb-1">DATE OF ISSUE</h6>
+                            <p class="text-primary font-mono mb-3" id="certModalDate"></p>
+                            <a href="" id="certModalDirectLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100 justify-content-center">
+                                <i class="fas fa-arrow-up-right-from-square me-2"></i>Open Full-Resolution Image
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top p-3">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8" data-aos="fade-up">
-                <div class="contact-card glass-card p-4 p-md-5">
-                    <form method="post" action="{% url 'home' %}#contact" novalidate>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     8. CONTACT SECTION — PROPERLY STYLED FORM WITH VISIBLE LABELS & FEEDBACK
+     ========================================================================== -->
+<section id="contact" class="section-container" aria-label="Contact Section">
+    <div class="container-portfolio">
+        <div class="section-header mb-5">
+            <span class="section-kicker font-mono">07 / GET IN TOUCH</span>
+            <h2 class="section-title">Initiate a Discussion or Collaboration</h2>
+            <p class="section-lead">
+                Available for full-time software engineering roles, AI agent development, and enterprise data analytics opportunities.
+            </p>
+        </div>
+
+        <div class="row g-5">
+            <!-- Left Direct Channels -->
+            <div class="col-lg-5 pe-lg-4" data-aos="fade-right">
+                <div class="contact-channel-card p-4">
+                    <h5 class="font-mono text-brand mb-3">DIRECT CHANNELS</h5>
+                    <p class="text-secondary mb-4">
+                        Reach out directly through email, LinkedIn, or the message form. I monitor incoming inquiries daily and respond within 24 hours.
+                    </p>
+
+                    <div class="contact-channel-item mb-4">
+                        <span class="channel-type font-mono text-muted">PRIMARY EMAIL</span>
+                        <div class="d-flex align-items-center gap-2 mt-1">
+                            <a href="mailto:ishishahid4@gmail.com" class="channel-value font-mono">ishishahid4@gmail.com</a>
+                            <button type="button" class="btn-copy-email" id="copyEmailBtn" title="Copy email address">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="contact-channel-item mb-4">
+                        <span class="channel-type font-mono text-muted">PHONE &amp; WHATSAPP</span>
+                        <div class="mt-1">
+                            <a href="tel:+923063389585" class="channel-value font-mono">+92 306 3389585</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-channel-item mb-4">
+                        <span class="channel-type font-mono text-muted">LOCATION &amp; MOBILITY</span>
+                        <p class="channel-value font-mono mt-1 mb-0">Gujranwala, Pakistan &bull; Open to Worldwide Remote Roles</p>
+                    </div>
+
+                    <div class="contact-social-pills d-flex flex-wrap gap-2 pt-3 border-top">
+                        <a href="https://github.com/Ishmal793" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+                            <i class="fab fa-github me-1"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/ishmal-shahid/" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+                            <i class="fab fa-linkedin-in me-1"></i> LinkedIn
+                        </a>
+                        <a href="https://huggingface.co/spaces/ishi4/Analysis_your_Next_Step" target="_blank" rel="noopener noreferrer" class="social-pill font-mono">
+                            <span>🤗</span> HuggingFace
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Contact Form with Visible Labels & Real Validation -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="contact-form-panel p-4 p-md-5">
+                    <h4 class="mb-4">Send a Direct Message</h4>
+
+                    <form method="post" action="{% url 'home' %}#contact" novalidate id="contactForm">
                         {% csrf_token %}
-                        <div class="row g-3">
+                        <div class="row g-4">
                             <div class="col-md-6">
-                                <label for="id_name" class="form-label">Name</label>
+                                <label for="id_name" class="form-label font-weight-bold">
+                                    Full Name / Organization <span class="text-danger">*</span>
+                                </label>
                                 {{ contact_form.name }}
                                 {% if contact_form.name.errors %}
-                                <div class="invalid-feedback d-block">{{ contact_form.name.errors.0 }}</div>
+                                <div class="invalid-feedback d-block font-mono mt-1">{{ contact_form.name.errors.0 }}</div>
                                 {% endif %}
                             </div>
+
                             <div class="col-md-6">
-                                <label for="id_email" class="form-label">Email</label>
+                                <label for="id_email" class="form-label font-weight-bold">
+                                    Email Address <span class="text-danger">*</span>
+                                </label>
                                 {{ contact_form.email }}
                                 {% if contact_form.email.errors %}
-                                <div class="invalid-feedback d-block">{{ contact_form.email.errors.0 }}</div>
+                                <div class="invalid-feedback d-block font-mono mt-1">{{ contact_form.email.errors.0 }}</div>
                                 {% endif %}
                             </div>
+
                             <div class="col-12">
-                                <label for="id_message" class="form-label">Message</label>
+                                <label for="id_message" class="form-label font-weight-bold">
+                                    Message Details <span class="text-danger">*</span>
+                                </label>
                                 {{ contact_form.message }}
                                 {% if contact_form.message.errors %}
-                                <div class="invalid-feedback d-block">{{ contact_form.message.errors.0 }}</div>
+                                <div class="invalid-feedback d-block font-mono mt-1">{{ contact_form.message.errors.0 }}</div>
                                 {% endif %}
                             </div>
-                            <div class="col-12 text-center mt-2">
-                                <button type="submit" class="btn btn-primary-glow btn-lg px-5">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary w-100 justify-content-center" id="contactSubmitBtn">
+                                    <span>Send Message</span>
+                                    <i class="fas fa-paper-plane ms-2"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <div class="contact-info row mt-5 g-3 text-center">
-                        <div class="col-md-4">
-                            <i class="fas fa-envelope text-gradient"></i>
-                            <p class="mb-0 mt-2">ishishahid4@gmail.com</p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="fas fa-map-marker-alt text-gradient"></i>
-                            <p class="mb-0 mt-2">Available Worldwide (Remote)</p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="fas fa-clock text-gradient"></i>
-                            <p class="mb-0 mt-2">Response within 24 hours</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="footer glass-card border-0 rounded-0">
-    <div class="container py-4 text-center">
-        <p class="mb-0">&copy; {% now "Y" %} <strong>Ishmal Shahid</strong>. Crafted with Django & AI passion.</p>
+<!-- ==========================================================================
+     9. FOOTER
+     ========================================================================== -->
+<footer class="site-footer py-4 border-top" aria-label="Site Footer">
+    <div class="container-portfolio">
+        <div class="row align-items-center g-3">
+            <div class="col-md-6 text-center text-md-start">
+                <span class="font-weight-bold">Ishmal Shahid</span>
+                <span class="text-muted font-mono ms-2">&copy; {% now "Y" %} &bull; Software Engineering &bull; IISAT University</span>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#hero" class="footer-link font-mono me-3">Back to Top &uarr;</a>
+                <a href="{% url 'download_cv' %}" class="footer-link font-mono">Download Resume</a>
+            </div>
+        </div>
     </div>
 </footer>
 {% endblock %}
