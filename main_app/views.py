@@ -368,7 +368,7 @@ def home(request):
 
     education = {
         "degree": "Bachelor of Science in Software Engineering (BS SE)",
-        "university": "IISAT University (Institute of Information Security & Applied Technology)",
+        "university": "International Institute of Science, Art and Technology (IISAT)",
         "location": "Gujranwala, Pakistan",
         "tenure": "Nov 2022 – 2026 (Graduated)",
         "cgpa": "3.7 / 4.0",
