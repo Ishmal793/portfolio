@@ -4,32 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ishmal Shahid — Python Developer, Data Analyst, AI & Backend Developer. Explore production AI projects, business analytics dashboards, and verified credentials.">
+    <meta name="description" content="Ishmal Shahid — Python Developer, Data Analyst, AI & Backend Developer. Portfolio featuring production GenAI applications, interactive analytics dashboards, and software engineering background.">
     <meta name="keywords" content="Ishmal Shahid, Python Developer, Data Analyst, AI Developer, Backend Developer, Django, Power BI, Streamlit, LLaMA 3, FAISS, Portfolio">
     <meta name="author" content="Ishmal Shahid">
     <meta name="theme-color" content="#F8FAFC">
     <meta name="robots" content="index, follow">
 
+    <link rel="canonical" href="{{ SITE_URL }}/">
+
     <!-- Open Graph Metadata -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://potfolio-website-lime.vercel.app/">
-    <meta property="og:title" content="Ishmal Shahid | Python Developer · Data Analyst · AI &amp; Backend Developer">
+    <meta property="og:url" content="{{ SITE_URL }}/">
+    <meta property="og:title" content="Ishmal Shahid — Python &amp; AI Developer | Portfolio">
     <meta property="og:description" content="Software Engineering Graduate from IISAT University (CGPA 3.7) with international AI research experience (H&amp;T Tech NY, Google Developers) and proven full-stack &amp; analytics systems.">
-    <meta property="og:image" content="{% static 'projects/ceerer_ai_.jpg' %}">
+    <meta property="og:image" content="{{ SITE_URL }}{% static 'projects/ceerer_ai_.jpg' %}">
 
     <!-- Twitter Metadata -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ishmal Shahid | Python Developer · Data Analyst · AI &amp; Backend Developer">
+    <meta name="twitter:title" content="Ishmal Shahid — Python &amp; AI Developer | Portfolio">
     <meta name="twitter:description" content="Explore AI projects, business analytics dashboards, verified certifications, and research credentials.">
-    <meta name="twitter:image" content="{% static 'projects/ceerer_ai_.jpg' %}">
+    <meta name="twitter:image" content="{{ SITE_URL }}{% static 'projects/ceerer_ai_.jpg' %}">
 
-    <title>{% block title %}Ishmal Shahid — Portfolio{% endblock %}</title>
+    <title>{% block title %}Ishmal Shahid — Python &amp; AI Developer | Portfolio{% endblock %}</title>
 
     <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}?v=3">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}?v=3">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}?v=3">
     <link rel="apple-touch-icon" sizes="64x64" href="{% static 'images/favicon-64x64.png' %}?v=3">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}?v=3">
+
+    <!-- JSON-LD Person Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ishmal Shahid",
+      "url": "{{ SITE_URL }}/",
+      "jobTitle": "Python & AI Developer",
+      "sameAs": [
+        "https://github.com/Ishmal793",
+        "https://www.linkedin.com/in/ishmal-shahid/",
+        "https://huggingface.co/spaces/ishi4/Analysis_your_Next_Step"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "International Institute of Science, Art and Technology (IISAT)"
+      }
+    }
+    </script>
 
     <!-- Preconnect & Google Fonts (Plus Jakarta Sans, Inter, JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +64,7 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <!-- Unified Design System Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2.2">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.0">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -62,7 +84,7 @@
 
                 <!-- Mobile Action Controls -->
                 <div class="d-flex align-items-center gap-2 d-lg-none">
-                    <button class="btn btn-icon theme-toggle-btn" id="themeToggleMobile" aria-label="Toggle theme">
+                    <button class="btn btn-icon theme-toggle-btn" id="themeToggleMobile" aria-label="Toggle dark/light theme">
                         <i class="fas fa-moon theme-icon"></i>
                     </button>
                     <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
@@ -89,7 +111,7 @@
                             <i class="fas fa-arrow-down me-1"></i>
                             <span>Resume</span>
                         </a>
-                        <button class="btn btn-icon theme-toggle-btn d-none d-lg-inline-flex" id="themeToggle" aria-label="Toggle color theme" title="Toggle Theme">
+                        <button class="btn btn-icon theme-toggle-btn d-none d-lg-inline-flex" id="themeToggle" aria-label="Toggle dark/light color theme" title="Toggle Theme">
                             <i class="fas fa-moon theme-icon" id="themeIcon"></i>
                         </button>
                     </div>
@@ -116,7 +138,7 @@
                 <div class="toast-body flex-grow-1 p-0">
                     {{ message }}
                 </div>
-                <button type="button" class="btn-close ms-3" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close ms-3" data-bs-dismiss="toast" aria-label="Close message"></button>
             </div>
         </div>
         {% endfor %}
@@ -136,7 +158,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="{% static 'js/main.js' %}?v=2.1"></script>
+    <script src="{% static 'js/main.js' %}?v=3.0"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

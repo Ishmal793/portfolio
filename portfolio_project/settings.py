@@ -67,6 +67,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "portfolio_project.urls"
 
+# Portfolio Canonical Site URL (configurable in one place)
+SITE_URL = os.environ.get("SITE_URL", "https://portfolio-website.vercel.app").rstrip("/")
+
+def site_context(request):
+    return {
+        "SITE_URL": SITE_URL,
+    }
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -78,6 +86,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "portfolio_project.settings.site_context",
             ],
         },
     },

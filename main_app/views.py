@@ -4,7 +4,7 @@ import os
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -26,9 +26,11 @@ class StaticProject:
         is_featured=True,
         order=0,
         category="ai",
-        badge="Flagship",
+        badge="Featured Project",
         highlights=None,
         short_description="",
+        impact="",
+        is_initial=True,
     ):
         self.title = title
         self.description = description
@@ -44,6 +46,8 @@ class StaticProject:
         self.category = category
         self.badge = badge
         self.highlights = highlights or []
+        self.impact = impact
+        self.is_initial = is_initial
 
     def get_tech_list(self):
         return [tech.strip() for tech in self.tech_stack.split(',') if tech.strip()]
@@ -61,7 +65,7 @@ class StaticCertificate:
         issue_date="",
         order=0,
         category="research",
-        badge="Verified",
+        badge="Certificate",
         credential_note="",
         verify_url="",
     ):
@@ -88,7 +92,8 @@ def home(request):
             huggingface_link="https://huggingface.co/spaces/ishi4/Analysis_your_Next_Step",
             github_link="https://github.com/Ishmal793",
             category="ai",
-            badge="Flagship AI Agent",
+            badge="Featured Project",
+            impact="<!-- TODO: add real result metric (e.g. processed 500+ resumes / reduced screening time by 40%) --> Impact: [TODO: Add key metric, e.g. evaluated 500+ resumes with <2s inference]",
             highlights=[
                 "FAISS vector search & ATS resume compatibility scoring",
                 "Automated skill gap breakdown with personalized learning paths",
@@ -96,6 +101,7 @@ def home(request):
                 "Live cloud deployment on Hugging Face Spaces with Gradio UI",
             ],
             order=1,
+            is_initial=True,
         ),
         StaticProject(
             title="Business Analytics Dashboard",
@@ -105,29 +111,15 @@ def home(request):
             tech_stack="Python, Streamlit, Pandas, Plotly, Matplotlib, KPI Analytics",
             github_link="http://github.com/ishmal793/business-dshboard-",
             category="analytics",
-            badge="Streamlit BI",
+            badge="Business Analytics",
+            impact="<!-- TODO: add real result metric (e.g. automated monthly sales reporting across 10k+ rows) --> Impact: [TODO: Add key metric, e.g. automated monthly sales reporting across 10k+ rows]",
             highlights=[
                 "Executive KPI tracking with revenue & trend forecasting",
                 "Dynamic interactive charts built with Plotly & Matplotlib",
                 "Automated CSV data processing & ETL transformation pipeline",
             ],
             order=2,
-        ),
-        StaticProject(
-            title="Excel Data Analysis & Dashboard Project",
-            short_description="Executive performance dashboard utilizing multi-table pivot modeling, dynamic slicers, and automated forecasting formulas.",
-            description="Comprehensive enterprise business performance analysis utilizing advanced Excel methodologies: dynamic multi-table pivot models, interactive slicers, KPI dashboards, and custom formulas to extract actionable commercial insights.",
-            image_name="excel_projects_.jpg",
-            tech_stack="Excel, Pivot Tables, Dynamic Slicers, KPI Dashboards, Financial Modeling",
-            github_link="https://github.com/Ishmal793/Excel_projects",
-            category="analytics",
-            badge="Excel Modeling",
-            highlights=[
-                "Interactive executive dashboards with dynamic slicers & timeline filters",
-                "Multi-table pivot data modeling and automated calculation formulas",
-                "Actionable variance analysis and statistical data breakdowns",
-            ],
-            order=3,
+            is_initial=True,
         ),
         StaticProject(
             title="Power BI Business Intelligence Dashboard",
@@ -138,12 +130,32 @@ def home(request):
             github_link="https://github.com/Ishmal793/BI_projects",
             category="analytics",
             badge="Power BI / DAX",
+            impact="<!-- TODO: add real result metric (e.g. consolidated 5 departmental data sources into 1 live dashboard) --> Impact: [TODO: Add key metric, e.g. consolidated 5 departmental data sources into 1 live dashboard]",
             highlights=[
                 "Custom DAX calculations for Year-over-Year (YoY) performance metrics",
                 "Relational star-schema data modeling integrating multiple sources",
                 "Cross-filtering dashboards for drill-through operational reporting",
             ],
+            order=3,
+            is_initial=True,
+        ),
+        StaticProject(
+            title="Excel Data Analysis & Dashboard Project",
+            short_description="Executive performance dashboard utilizing multi-table pivot modeling, dynamic slicers, and automated forecasting formulas.",
+            description="Comprehensive enterprise business performance analysis utilizing advanced Excel methodologies: dynamic multi-table pivot models, interactive slicers, KPI dashboards, and custom formulas to extract actionable commercial insights.",
+            image_name="excel_projects_.jpg",
+            tech_stack="Excel, Pivot Tables, Dynamic Slicers, KPI Dashboards, Financial Modeling",
+            github_link="https://github.com/Ishmal793/Excel_projects",
+            category="analytics",
+            badge="Excel Modeling",
+            impact="<!-- TODO: add real result metric (e.g. modeled multi-year financial forecasting and variance tracking) --> Impact: [TODO: Add key metric, e.g. modeled multi-year financial forecasting and variance tracking]",
+            highlights=[
+                "Interactive executive dashboards with dynamic slicers & timeline filters",
+                "Multi-table pivot data modeling and automated calculation formulas",
+                "Actionable variance analysis and statistical data breakdowns",
+            ],
             order=4,
+            is_initial=False,
         ),
         StaticProject(
             title="Django Full-Stack Web Applications",
@@ -154,12 +166,14 @@ def home(request):
             github_link="https://github.com/Ishmal793/Django_projects/tree/main",
             category="web",
             badge="Full-Stack Django",
+            impact="<!-- TODO: add real result metric (e.g. deployed 4 modular web apps with authentication and database persistence) --> Impact: [TODO: Add key metric, e.g. deployed 4 modular web apps with authentication and database persistence]",
             highlights=[
                 "Modular Django apps implementing robust MTV architectural patterns",
                 "Secure user authentication, session state management, and CSRF protection",
                 "Clean database models, migrations, and customized admin panel workflows",
             ],
             order=5,
+            is_initial=False,
         ),
     ]
 
@@ -170,8 +184,8 @@ def home(request):
             issuer="H&T Tech Solutions, Rochester, New York",
             issue_date="2026",
             category="research",
-            badge="International Research",
-            credential_note="Supervised by Ms. Amna Saba (HOD Software Engineering, IISAT University Gujranwala). Advanced AI modeling, analytical frameworks, and research methodologies.",
+            badge="Research",
+            credential_note="Supervised by Ms. Amna Saba (HOD Software Engineering, International Institute of Science, Art and Technology - IISAT Gujranwala). Advanced AI modeling and research methodologies.",
         ),
         StaticCertificate(
             title="Certificate of Appreciation — AI Researcher",
@@ -179,53 +193,53 @@ def home(request):
             issuer="Google Developers Initiative",
             issue_date="2026",
             category="research",
-            badge="Google Initiative",
-            credential_note="3-month intensive AI research tenure recognized for technical leadership, research prototypes, and outstanding performance.",
+            badge="Research",
+            credential_note="3-month intensive AI research tenure recognized for technical leadership, research prototypes, and performance.",
         ),
         StaticCertificate(
             title="ISPR Internship Program Certificate",
             image_name="ispr_internship.png",
             issuer="Inter Services Public Relations (ISPR), Pakistan Armed Forces",
-            issue_date="12 Jan 2026 – 20 Feb 2026",
+            issue_date="Jan 2026 – Feb 2026",
             category="honors",
-            badge="National Defense Media",
-            credential_note="Completed rigorous internship at ISPR Headquarters under Lt. Gen. Ahmed Sharif Chaudhry. Serial No. 652.",
+            badge="Internship",
+            credential_note="Completed structured internship at ISPR Headquarters under Lt. Gen. Ahmed Sharif Chaudhry (Serial No. 652).",
         ),
         StaticCertificate(
             title="Generative AI Application Developer Certificate",
             image_name="gen_ai_.jpg",
             issuer="UETIANS Lahore Endowment Foundation (HEC NCEAC)",
-            issue_date="17 March, 2026",
+            issue_date="March 2026",
             category="certifications",
-            badge="GenAI Certification",
-            credential_note="Authorized by HEC, NCEAC, PakAngels, iCodeGuru, and Aspire Pakistan. Covering LLM pipelines, prompt engineering, and GenAI app development.",
+            badge="Certification",
+            credential_note="Authorized by HEC, NCEAC, PakAngels, iCodeGuru, and Aspire Pakistan. Covering LLM pipelines and GenAI application development.",
         ),
         StaticCertificate(
             title="Python for Data Science, AI & Development",
             image_name="corserra_ppython_.jpg",
             issuer="Coursera (Authorized by IBM Skills Network)",
-            issue_date="16 Dec, 2025",
+            issue_date="Dec 2025",
             category="certifications",
-            badge="IBM Authorized",
-            credential_note="Comprehensive mastery in Python programming, data structures, REST APIs, web scraping, and machine learning fundamentals.",
+            badge="Certification",
+            credential_note="Mastery in Python programming, data structures, REST APIs, web scraping, and machine learning fundamentals.",
         ),
         StaticCertificate(
             title="Foundations of Agent-Based AI Systems",
             image_name="corsera_agent.jpg",
             issuer="Coursera & LearnQuest",
-            issue_date="16 Dec, 2025",
+            issue_date="Dec 2025",
             category="certifications",
-            badge="Agentic AI",
-            credential_note="Foundational architectures for autonomous AI agents, multi-agent coordination, reasoning models, and agent workflows.",
+            badge="Certification",
+            credential_note="Architectures for autonomous AI agents, multi-agent coordination, reasoning models, and agent workflows.",
         ),
         StaticCertificate(
             title="Advance Python Programming & Applications",
             image_name="cerificate_navttac.jpg",
             issuer="National Vocational and Technical Training Commission (NAVTTC), Govt of Pakistan",
-            issue_date="16 Dec, 2024",
+            issue_date="Dec 2024",
             category="certifications",
-            badge="Govt of Pakistan",
-            credential_note="National-level technical certification in advanced object-oriented Python, backend architecture, and database integrations.",
+            badge="Certification",
+            credential_note="Technical certification in object-oriented Python, backend architecture, and database integrations.",
         ),
     ]
 
@@ -234,6 +248,11 @@ def home(request):
     if request.method == "POST":
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
+            # Anti-spam Honeypot Check
+            if contact_form.cleaned_data.get("website_hp"):
+                logger.info("Spam bot submission caught via honeypot.")
+                return redirect(reverse("home") + "#contact")
+
             contact = contact_form.save(commit=False)
             email_sent = _send_contact_email(contact)
             if email_sent:
@@ -242,9 +261,9 @@ def home(request):
                     "Thank you! Your message has been sent successfully. I will get back to you shortly.",
                 )
             else:
-                messages.warning(
+                messages.info(
                     request,
-                    "Thank you! Your message was received, but email notification could not be dispatched right now.",
+                    "Thank you! Your inquiry was logged and received. I will review it shortly.",
                 )
             return redirect(reverse("home") + "#contact")
         messages.error(
@@ -252,12 +271,7 @@ def home(request):
             "Please check the form fields and correct any errors before resubmitting.",
         )
 
-    # 5 Clearly Categorized Skill Groups as specifically requested:
-    # 1. Programming
-    # 2. Backend Development
-    # 3. Data Analytics
-    # 4. AI & Machine Learning
-    # 5. Tools & Platforms
+    # 5 Balanced Skill Groups
     skill_categories = [
         {
             "name": "Programming",
@@ -282,10 +296,10 @@ def home(request):
             "name": "Data Analytics",
             "icon": "fas fa-chart-line",
             "skills": [
-                {"name": "Power BI", "icon": "fas fa-chart-pie", "note": "Interactive Executive Dashboards & Star Schema"},
+                {"name": "Power BI", "icon": "fas fa-chart-pie", "note": "Interactive Dashboards & Data Modeling"},
                 {"name": "Advanced Excel", "icon": "fas fa-file-excel", "note": "Pivot Tables, Slicers & Financial Models"},
                 {"name": "Pandas & NumPy", "icon": "fas fa-table", "note": "Data Cleaning, Transformation & ETL"},
-                {"name": "Plotly & Matplotlib", "icon": "fas fa-chart-area", "note": "Dynamic Statistical & Visual Storytelling"},
+                {"name": "Plotly & Matplotlib", "icon": "fas fa-chart-area", "note": "Statistical & Visual Storytelling"},
                 {"name": "Streamlit", "icon": "fas fa-stream", "note": "Analytical Web Applications & Reporting"},
             ],
         },
@@ -312,28 +326,23 @@ def home(request):
         },
     ]
 
-    # Flat skill list maintained for backwards compatibility
-    skills = [
-        {"name": "Python", "icon": "fab fa-python"},
-        {"name": "Django", "icon": "fas fa-server"},
-        {"name": "SQL", "icon": "fas fa-database"},
-        {"name": "Power BI", "icon": "fas fa-chart-pie"},
-        {"name": "Excel", "icon": "fas fa-file-excel"},
-        {"name": "Pandas", "icon": "fas fa-table"},
-        {"name": "Plotly", "icon": "fas fa-chart-area"},
-        {"name": "Streamlit", "icon": "fas fa-stream"},
-        {"name": "LLaMA 3", "icon": "fas fa-brain"},
-        {"name": "FAISS", "icon": "fas fa-project-diagram"},
-        {"name": "Git", "icon": "fab fa-github"},
-    ]
-
+    # Reverse-chronological experience (latest first) with consistent date formatting
     experiences = [
+        {
+            "role": "Intern — Systems & Media Workflows",
+            "company": "Inter Services Public Relations (ISPR), Pakistan Armed Forces",
+            "location": "Rawalpindi / Islamabad, Pakistan",
+            "date": "Jan 2026 – Feb 2026",
+            "badge": "Internship",
+            "description": "Selected for the structured internship program at ISPR Headquarters under Lt. Gen. Ahmed Sharif Chaudhry. Gained hands-on experience in structured institutional workflows, technical documentation, large-scale information processing, and communication operations (Serial No. 652).",
+            "tags": ["Data Processing", "Technical Reporting", "Organizational Operations", "Communication"],
+        },
         {
             "role": "AI Research Program Participant",
             "company": "H&T Tech Solutions",
             "location": "Rochester, NY, USA (Remote)",
-            "date": "2026",
-            "badge": "International Research",
+            "date": "Jan 2026 – Mar 2026",
+            "badge": "Research",
             "description": "Participated in an international AI Research Program under the supervision of Ms. Amna Saba (HOD Software Engineering, IISAT University Gujranwala). Worked on emerging artificial intelligence concepts, research methodologies, analytical modeling, and practical GenAI implementations.",
             "tags": ["AI Modeling", "Research Methodologies", "Analytical Frameworks", "GenAI"],
         },
@@ -342,30 +351,22 @@ def home(request):
             "company": "Google Developers Initiative",
             "location": "Remote",
             "date": "3-Month Tenure (2026)",
-            "badge": "Google Initiative",
+            "badge": "Research",
             "description": "Completed an intensive 3-month AI research tenure under Google Developers initiatives. Researched machine learning architectures, evaluated prototype models, and received official Certificate of Appreciation for technical leadership and outstanding performance.",
             "tags": ["AI Research", "Machine Learning", "Python", "Data Science"],
         },
         {
-            "role": "Intern — ISPR Internship Program",
-            "company": "Inter Services Public Relations (ISPR), Pakistan Armed Forces",
-            "location": "Rawalpindi / Islamabad, Pakistan",
-            "date": "12 Jan 2026 – 20 Feb 2026",
-            "badge": "Armed Forces Media Wing",
-            "description": "Selected for the prestigious internship program at ISPR Headquarters under Lt. Gen. Ahmed Sharif Chaudhry. Gained hands-on experience in structured institutional workflows, technical documentation, large-scale information processing, and communication operations (Serial No. 652).",
-            "tags": ["Data Processing", "Technical Reporting", "Organizational Operations", "Communication"],
-        },
-        {
-            "role": "Data Analyst Intern",
+            "role": "Data Analyst",
             "company": "Techohub Data Analytics & AI",
             "location": "Lahore, Pakistan (Remote)",
             "date": "Jul 2024 – Feb 2025",
-            "badge": "Industry Internship",
-            "description": "Built interactive executive dashboards using Streamlit and Python, automated repetitive data extraction pipelines, cleaned raw multi-source business datasets, and engineered visual KPI tracking models to inform management strategy.",
-            "tags": ["SQL", "Power BI", "Pandas", "Streamlit", "Plotly", "Excel"],
+            "badge": "Industry Role",
+            "description": "Data Analyst (July 2024 – Feb 2025), first 3 months as intern. Built interactive executive dashboards using Streamlit and Python, automated repetitive data extraction pipelines, cleaned raw multi-source business datasets, and engineered visual KPI tracking models to inform management strategy.",
+            "tags": ["Python", "SQL", "Streamlit", "Power BI", "Pandas", "Plotly"],
         },
     ]
 
+    # Education: CGPA 3.7 and 88.1 score kept here exclusively to remove redundancy
     education = {
         "degree": "Bachelor of Science in Software Engineering (BS SE)",
         "university": "International Institute of Science, Art and Technology (IISAT)",
@@ -373,10 +374,11 @@ def home(request):
         "tenure": "Nov 2022 – 2026 (Graduated)",
         "cgpa": "3.7 / 4.0",
         "highlights": [
-            "Graduated with High Academic Distinction (CGPA: 3.7 / 4.0)",
+            "Graduated with Academic Distinction (CGPA: 3.7 / 4.0)",
             "Specialized in AI Systems, Data Modeling & Backend Engineering",
             "Supervised research by Ms. Amna Saba (HOD Software Engineering)",
             "Core Curriculum: Data Structures, OOP, DBMS, Machine Learning, Web Engineering",
+            "National Skills Test Score: 88.1 (Issuing Body: [TODO: Add official issuing body and test name])",
         ],
     }
 
@@ -385,7 +387,6 @@ def home(request):
         "certificates": certificates,
         "contact_form": contact_form,
         "skill_categories": skill_categories,
-        "skills": skills,
         "experiences": experiences,
         "education": education,
     }
@@ -394,8 +395,8 @@ def home(request):
 
 def download_cv(request):
     cv_paths = [
-        os.path.join(settings.MEDIA_ROOT, "Ishmal_Shahid_CV_.pdf"),
         os.path.join(settings.BASE_DIR, "static", "cv", "Ishmal_Shahid_CV.pdf"),
+        os.path.join(settings.MEDIA_ROOT, "Ishmal_Shahid_CV_.pdf"),
     ]
     for path in cv_paths:
         if os.path.exists(path) and os.path.getsize(path) > 1000:
@@ -408,28 +409,43 @@ def download_cv(request):
     raise Http404("CV file not found.")
 
 
+def robots_txt(request):
+    site_url = getattr(settings, "SITE_URL", "https://portfolio-website.vercel.app")
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        f"Sitemap: {site_url}/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
+
+def sitemap_xml(request):
+    site_url = getattr(settings, "SITE_URL", "https://portfolio-website.vercel.app")
+    content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{site_url}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{site_url}/download-cv/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+    return HttpResponse(content.strip(), content_type="application/xml")
+
+
 def _send_contact_email(contact):
-    recipient = getattr(
-        settings,
-        "CONTACT_RECIPIENT_EMAIL",
-        "ishishahid4@gmail.com",
-    )
-    subject = f"Portfolio Contact: {contact.name}"
-    body = (
-        f"Name: {contact.name}\n"
-        f"Email: {contact.email}\n\n"
-        f"Message:\n{contact.message}"
-    )
-    email = EmailMessage(
-        subject=subject,
-        body=body,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[recipient],
-        reply_to=[contact.email],
-    )
+    recipient = getattr(settings, "CONTACT_RECIPIENT_EMAIL", "ishishahid4@gmail.com")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "portfolio@example.com")
+    subject = f"Portfolio Message from {contact.name}"
+    body = f"Name: {contact.name}\nEmail: {contact.email}\n\nMessage:\n{contact.message}\n"
     try:
+        email = EmailMessage(subject=subject, body=body, from_email=from_email, to=[recipient], reply_to=[contact.email])
         email.send(fail_silently=False)
         return True
-    except Exception as e:
-        logger.error(f"Error sending email: {e}")
+    except Exception as exc:
+        logger.warning("Could not dispatch email notification for contact message from %s: %s", contact.email, exc)
         return False

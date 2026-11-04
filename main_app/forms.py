@@ -3,6 +3,19 @@ from .models import ContactMessage
 
 
 class ContactForm(forms.ModelForm):
+    # Anti-spam Honeypot field (hidden from legitimate users, filled by bots)
+    website_hp = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "d-none",
+                "tabindex": "-1",
+                "autocomplete": "off",
+                "aria-hidden": "true",
+            }
+        ),
+    )
+
     class Meta:
         model = ContactMessage
         fields = ["name", "email", "message"]
@@ -14,6 +27,7 @@ class ContactForm(forms.ModelForm):
                     "id": "id_name",
                     "required": True,
                     "autocomplete": "name",
+                    "aria-label": "Full Name",
                 }
             ),
             "email": forms.EmailInput(
@@ -23,6 +37,7 @@ class ContactForm(forms.ModelForm):
                     "id": "id_email",
                     "required": True,
                     "autocomplete": "email",
+                    "aria-label": "Email Address",
                 }
             ),
             "message": forms.Textarea(
@@ -32,6 +47,7 @@ class ContactForm(forms.ModelForm):
                     "id": "id_message",
                     "rows": 5,
                     "required": True,
+                    "aria-label": "Message Content",
                 }
             ),
         }
