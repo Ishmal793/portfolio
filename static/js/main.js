@@ -298,4 +298,91 @@
       }
     }, 6000);
   });
+
+  /* ----------------------------------------------------
+     10. "View All Projects" Toggle Handler
+     ---------------------------------------------------- */
+  const toggleProjectsBtn = document.getElementById("toggleAllProjectsBtn");
+  const extraProjects = document.querySelectorAll(".extra-project-item");
+
+  if (toggleProjectsBtn && extraProjects.length > 0) {
+    let isExpanded = false;
+    toggleProjectsBtn.addEventListener("click", () => {
+      isExpanded = !isExpanded;
+      extraProjects.forEach((item) => {
+        if (isExpanded) {
+          item.classList.remove("d-none");
+          item.style.opacity = "0";
+          setTimeout(() => {
+            item.style.transition = "opacity 0.35s ease";
+            item.style.opacity = "1";
+          }, 30);
+        } else {
+          item.classList.add("d-none");
+        }
+      });
+
+      if (isExpanded) {
+        toggleProjectsBtn.innerHTML = '<i class="fas fa-chevron-up me-2"></i> Show Less';
+        toggleProjectsBtn.setAttribute("aria-expanded", "true");
+      } else {
+        toggleProjectsBtn.innerHTML = '<i class="fas fa-layer-group me-2"></i> View All Projects (' + (3 + extraProjects.length) + ')';
+        toggleProjectsBtn.setAttribute("aria-expanded", "false");
+        const projSection = document.getElementById("projects");
+        if (projSection) {
+          projSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  }
+
+  /* ----------------------------------------------------
+     11. Certificate Lightbox Keyboard Navigation
+     ---------------------------------------------------- */
+  if (certModal) {
+    const certTriggers = Array.from(document.querySelectorAll('[data-bs-target="#certModal"]'));
+    let currentCertIndex = -1;
+
+    certModal.addEventListener("show.bs.modal", (event) => {
+      const trigger = event.relatedTarget;
+      if (trigger) {
+        currentCertIndex = certTriggers.indexOf(trigger);
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!certModal.classList.contains("show") || certTriggers.length === 0) return;
+
+      if (e.key === "ArrowRight") {
+        if (currentCertIndex >= 0 && currentCertIndex < certTriggers.length - 1) {
+          currentCertIndex++;
+          certTriggers[currentCertIndex].click();
+        }
+      } else if (e.key === "ArrowLeft") {
+        if (currentCertIndex > 0) {
+          currentCertIndex--;
+          certTriggers[currentCertIndex].click();
+        }
+      }
+    });
+  }
+
+  /* ----------------------------------------------------
+     12. Contact Form Loading & Disabled State
+     ---------------------------------------------------- */
+  const contactForm = document.getElementById("contactForm");
+  const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+  const submitBtnSpinner = document.getElementById("submitBtnSpinner");
+  const submitBtnText = document.getElementById("submitBtnText");
+
+  if (contactForm && contactSubmitBtn) {
+    contactForm.addEventListener("submit", function () {
+      if (submitBtnSpinner) submitBtnSpinner.classList.remove("d-none");
+      if (submitBtnText) submitBtnText.textContent = "Sending Message...";
+      contactSubmitBtn.setAttribute("disabled", "disabled");
+      contactSubmitBtn.style.opacity = "0.75";
+      contactSubmitBtn.style.cursor = "not-allowed";
+    });
+  }
+
 })();
